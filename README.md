@@ -1,10 +1,10 @@
 # 目录
-  - [001 输出&计算]()
+  - [001 输出&计算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#001-输出与计算)
+  - [002 数据类型](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-数据类型)
   - 
 
 
-
-# 001 输出&计算
+# 001 输出与计算
 **1. 输出样例**
 ```C++
 #include <iostream> // 输入输出
@@ -106,4 +106,4 @@ int main(){
   return 0;
 }
 ```
-# 数据类型
+# 002 数据类型
