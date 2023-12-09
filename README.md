@@ -5,7 +5,7 @@
 
 
 # 001 输出与计算
-*[返回目录](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)* 
+*[返回目录](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)*  
 **1. 输出样例**
 ```C++
 #include <iostream> // 输入输出
@@ -108,7 +108,7 @@ int main(){
 }
 ```
 # 002 数据类型
-*[返回目录](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)* 
+*[返回目录](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)*  
 **1. 数据类型**
 ```c++
 #include <iostream>
