@@ -3,6 +3,8 @@
   - [002 数据类型](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-数据类型)
   - [003 if语句](https://github.com/SacredDreams/C-Notes/blob/main/README.md#003-if语句)
   - [004 循环](https://github.com/SacredDreams/C-Notes/blob/main/README.md#004-循环)
+  - [005 文件的写入和读取](https://github.com/SacredDreams/C-Notes/blob/main/README.md#005-文件的写入和读取)
+  - [006 数组](https://github.com/SacredDreams/C-Notes/blob/main/README.md#006-数组)
 
 
 # 001 输入输出与基本数学计算
@@ -314,4 +316,214 @@ int main(){
 # 004 循环
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
-**1. while循环**
+**1. 前++、--与后++、--**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a = 0;
+	
+	cout << a << endl; // 0000
+	cout << a ++ << endl; // 0 先输出后++
+	cout << ++ a << endl; // 1 先++后输出
+	cout << a -- << endl; // 0 先输出后--
+	cout << -- a << endl; // -1 先--后输出
+	
+	return 0;
+}
+```
+**2. while循环**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 输出0 ~ 100
+	int num1 = 0;
+	
+	while(num1 <= 100){ // 当num满足条件时才执行
+		cout << num1 << endl;
+		num1 ++; // 随着num的增加，当num加到101时，不满足条件，则跳出循环
+	}
+	
+	// 死循环
+	while(true){
+		cout << "这是一个死循环！！！" << endl;
+	}
+	
+	// 输入任意数字，如果为0则跳出循环，如果不为0，则输出该数字
+	while(true){
+		int num2;
+		cin >> num2;
+		if(!num2){
+			break; // 使用break跳出循环
+		}
+	}
+	
+	// 遍历0 ~ 100之间的数，如果这个数是偶数，则输出“偶数”，不是则跳过
+	int num3 = -1;
+	while(num3 < 101){ // 或写作“num3 <= 100”
+		num ++;
+		if(num % 2){
+			continue; // 结束当次循环，直接进入下一次循环
+		}
+		cout << "偶数" << endl;
+	}
+	
+	return 0;
+}
+```
+**3. do-while循环**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 先执行do中的内容，再判断是否需要循环do中的内容
+	
+	// 输入一个数n，输出0 ~ n之间的所有奇数
+	int start = 0, end;
+	cin >> end;
+	do{
+		if(start % 2){
+			cout << start << ' ';
+		}
+		start ++;
+	}while(start <= end);
+	
+	return 0;
+}
+```
+**4. for循环**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 输出0 ~ 100之间的所有偶数之和
+	int sum = 0;
+	
+	for(int i=0; i<=100; i++){ // 0是初始值，小于等于100是条件，自增是对于i的操作
+		if(!(i % 2)){
+			sum += i;
+		}
+	}
+	cout << sum << endl;
+
+	// 双重for循环：输出乘法口诀表
+	for(int i=1; i<=9; i++){
+		for(int j=1; j<=i; j++){
+			cout << i << 'x' << j << '=' << i * j << '\t';
+		}
+		cout << endl;
+	}
+	
+	return 0;
+}
+```
+# 005 文件的写入和读取
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 主函数内输入输出**
+文字说明：输出从0 ~ n中除了x和y的所有数字
+*test.in*
+```
+120 55 80	
+```
+```test.in```文件中依次输入的为n、x、y
+*main.cpp*
+```c++
+#include <iostream>
+#include <cstdio> // 文件读取和写入
+
+using namespace std;
+
+int main(){
+	int n, x, y;
+	
+	freopen("test.in", "r", stdin); // 打开文件，准备读取
+	freopen("test.out", "w", stdout); // 打开文件，准备写入
+	
+	cin >> n >> x >> y;
+
+	for(int i=0; i<=n; i++){
+		if(i == x || i == y){ // 如果i等于x或i等于y时条件成立
+			continue; // 结束此次，继续执行下次
+		}
+		cout << i << ' ';
+	}
+	
+	fclose(stdin); // 关闭文件
+	fclose(stdout); // 关闭文件
+	
+	return 0;
+}
+```
+*test.out*
+```
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
+```
+```test.out```为输出结果，和控制台输出相同
+**2. 创建全局输入输出流**
+文字说明：输入a和b，计算a*b的结果
+*test1.in*
+```
+10 30
+```
+*main1.cpp*
+```c++
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+
+// 创建全局输入输出流对象
+ifstream in("test1.in);
+ofstream out("test1.out);
+
+// 如果起名时为cin和cout需要屏蔽iostream中的cin和cout，如下：
+// ifstream cin("test1.in);
+// ofstream cout("test1.out);
+
+int main(){
+	int a, b;
+	
+	in >> a >> b;
+	out << a * b << endl;
+	
+	// 屏蔽iostream中的cin和cout（对应上文注释代码部分）
+	// std::ios::sync_with_stdio(false);
+	// cin >> a >> b;
+	// cout << a * b << endl;
+	
+	return 0;
+}
+```
+*test1.out*
+```
+300
+```
+# 006 数组
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
