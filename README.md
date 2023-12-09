@@ -1,8 +1,8 @@
 # 目录
   - [001 输入输出与基本数学计算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#001-输入输出与基本数学计算)
   - [002 数据类型](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-数据类型)
-  - [003 if语句](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-003-if语句)
-  - [004 循环](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-004-循环)
+  - [003 if语句](https://github.com/SacredDreams/C-Notes/blob/main/README.md#003-if语句)
+  - [004 循环](https://github.com/SacredDreams/C-Notes/blob/main/README.md#004-循环)
 
 
 # 001 输入输出与基本数学计算
@@ -100,7 +100,7 @@ int main(){
   	int temp;
   
   	// 方法一
- 	 temp = a;
+	temp = a;
   	a = b;
   	b = temp;
   	cout << a << ' ' << b << endl;
