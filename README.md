@@ -435,7 +435,7 @@ int main(){
 ```
 120 55 80	
 ```
-```test.in```文件中依次输入的为n、x、y
+```test.in```文件中依次输入的为n、x、y  
 *main.cpp*
 ```c++
 #include <iostream>
