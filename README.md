@@ -430,7 +430,7 @@ int main(){
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 **1. 主函数内输入输出**  
-文字说明：输出从0 ~ n中除了x和y的所有数字
+文字说明：输出从0 ~ n中除了x和y的所有数字  
 *test.in*
 ```
 120 55 80	
@@ -470,7 +470,7 @@ int main(){
 ```
 ```test.out```为输出结果，和控制台输出相同  
 **2. 创建全局输入输出流**  
-文字说明：输入a和b，计算a*b的结果
+文字说明：输入a和b，计算a*b的结果  
 *test1.in*
 ```
 10 30
