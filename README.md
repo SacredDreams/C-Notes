@@ -483,12 +483,12 @@ int main(){
 using namespace std;
 
 // 创建全局输入输出流对象
-ifstream in("test1.in);
-ofstream out("test1.out);
+ifstream in("test1.in");
+ofstream out("test1.out");
 
 // 如果起名时为cin和cout需要屏蔽iostream中的cin和cout，如下：
-// ifstream cin("test1.in);
-// ofstream cout("test1.out);
+// ifstream cin("test1.in");
+// ofstream cout("test1.out");
 
 int main(){
 	int a, b;
