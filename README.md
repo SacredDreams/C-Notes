@@ -328,6 +328,35 @@ int main(){
   	return 0;
 }
 ```
+**3. switch语句**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 100分A，90 ~ 99分B，60 ~ 89分C，其他D
+	int n;
+	cin >> n;
+	
+	switch(n / 10){ // 注意：不写break就会顺次执行，不会跳出
+		case 10:
+			cout << 'A' << endl;
+			break;
+		case 9:
+			cout << 'B' << endl;
+			break;
+		case 8:
+		case 7:
+		case 6:
+			cout << 'C' << endl;
+			break;
+		default:
+			cout << 'D' << endl;
+	}
+	return 0;
+}
+```
 # 004 循环
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -438,35 +467,6 @@ int main(){
 		cout << endl;
 	}
 	
-	return 0;
-}
-```
-**5. switch语句**
-```c++
-#include <iostream>
-
-using namespace std;
-
-int main(){
-	// 100分A，90 ~ 99分B，60 ~ 89分C，其他D
-	int n;
-	cin >> n;
-	
-	switch(n / 10){ // 注意：不写break就会顺次执行，不会跳出
-		case 10:
-			cout << 'A' << endl;
-			break;
-		case 9:
-			cout << 'B' << endl;
-			break;
-		case 8:
-		case 7:
-		case 6:
-			cout << 'C' << endl;
-			break;
-		default:
-			cout << 'D' << endl;
-	}
 	return 0;
 }
 ```
