@@ -511,6 +511,72 @@ int main(){
 # 006 数组
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
+**1. 数组**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int arr4[5];
+
+int main(){
+	// 创建数组：int为数组的数据类型，[]中为数组长难度， {}为数组中的元素
+	int arr[5] = {0, 1, 2, 3, 4}; // 下标从0开始
+	
+	// 读出数组中的数据
+	for(int i=0; i<5; i++){
+		cout << arr[i] << endl; // 0 1 2 3 4 使用“a[下标]”来提取数组中的元素
+	}
+	
+	// 将数组中的数字都加上1
+	for(int i=0; i<5; i++){
+		a[i] ++; // 使用++将数组中的数据直接修改，也可以写作“a[i] += 1”
+		cout << a[i] << endl; // 1 2 3 4 5
+	}
+	
+	// 将数组每个元素的ASCII码加1
+	char arr1[5] = {'a', 'b', 'c', 'd', 'e'};
+	for(int i=0; i<5; i++){
+		arr1[i] ++;
+		cout << arr1[i] << endl; // b c d e f
+	}
+	
+	// 如果创建数组时，{}内为空，则输出结果均为0
+	int arr2[5] = {};
+	for(int i=0; i<5; i++){
+		cout << arr[2] << endl; // 0 0 0 0 0
+	}
+	
+	// 如果去掉=和{}，写在main函数内部，则为随机数，写在main函数外部，则全为0
+	int arr3[5];
+	for(int i=0; i<5; i++){
+		cout << arr3[i] << endl;
+	}
+	for(int i=0; i<5; i++){
+		cout << arr4[i] << endl; // 0 0 0 0 0 前文有创建过arr4
+	}
+	
+	return 0;
+}
+```
+**2. 数组长度及元素的输入**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 自定义数组长度，并输入这些元素
+	int len;
+	cin >> len;
+	int a[len] = {};
+	for(int i=0; i<len; i++){
+		cin >> a[i]; // 输入
+	}
+	
+	return 0;
+}
+```
 
 
 
