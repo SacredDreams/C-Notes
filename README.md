@@ -1,10 +1,12 @@
 # 目录
   - [001 输入输出与基本数学计算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#001-输入输出与基本数学计算)
   - [002 数据类型](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-数据类型)
-  - [003 if语句](https://github.com/SacredDreams/C-Notes/blob/main/README.md#003-if语句)
+  - [003 条件判断](https://github.com/SacredDreams/C-Notes/blob/main/README.md#003-条件判断)
   - [004 循环](https://github.com/SacredDreams/C-Notes/blob/main/README.md#004-循环)
   - [005 文件的写入和读取](https://github.com/SacredDreams/C-Notes/blob/main/README.md#005-文件的写入和读取)
   - [006 数组](https://github.com/SacredDreams/C-Notes/blob/main/README.md#006-数组)
+  - [007 字符串](https://github.com/SacredDreams/C-Notes/blob/main/README.md#007-字符串)
+  - [008 函数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#008-函数)
 
 
 # 001 输入输出与基本数学计算
@@ -46,6 +48,17 @@ int main(){
 using namespace std;
 
 int main(){
+	/*
+	// 数学运算符（整数除法运算时，仅取整数部分的值）
+	+	-	*	/
+	// 复合运算符
+	+=	-=	*=	/=
+	// 关系运算符
+	>=	>	<	<=	==	!=
+	// 逻辑运算符（优先级从高到低）
+	!	&&	||
+	*/
+	
   	// 进行数学计算
   	int a = 20, b = 10;
   	double c = 5.22, d = 4.82;
@@ -128,6 +141,8 @@ int main(){
 #include <iostream>
 
 using namespace std;
+
+typedef long long ll; // 使用long long声明时，可以简写为ll
 
 int main(){
 	/*
@@ -230,7 +245,7 @@ int main(){
   	return 0;
 }
 ```
-# 003 if语句
+# 003 条件判断
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 **1. 单层判断**
@@ -426,6 +441,35 @@ int main(){
 	return 0;
 }
 ```
+**5. switch语句**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 100分A，90 ~ 99分B，60 ~ 89分C，其他D
+	int n;
+	cin >> n;
+	
+	switch(n / 10){ // 注意：不写break就会顺次执行，不会跳出
+		case 10:
+			cout << 'A' << endl;
+			break;
+		case 9:
+			cout << 'B' << endl;
+			break;
+		case 8:
+		case 7:
+		case 6:
+			cout << 'C' << endl;
+			break;
+		default:
+			cout << 'D' << endl;
+	}
+	return 0;
+}
+```
 # 005 文件的写入和读取
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -566,20 +610,156 @@ int main(){
 using namespace std;
 
 int main(){
-	// 自定义数组长度，并输入这些元素
-	int len;
+	// 自定义数组长度，并输入这些元素，求出所有数字之和
+	int len, sum = 0;
 	cin >> len;
 	int a[len] = {};
 	for(int i=0; i<len; i++){
 		cin >> a[i]; // 输入
+		sum += a[i];
+	}
+	cout << sum << endl;
+	
+	return 0;
+}
+```
+**3. 对数组进行排序**
+```c++
+#include <iostream>
+#include <algorithm> // 对数组进行排序
+
+using namespace std;
+
+// 自定义排序规则（使用见后文）
+bool cmp(int a, int b){
+	// return a < b; 进行升序排列
+	return a > b; // 进行降序排列
+}
+
+int main(){
+	int a[5] = {};
+	double b[5] = {};
+	char c[5] = {};
+	
+	for(int i=0; i<5; i++){
+		cin >> a[i] >> b[i] >> c[i];
+	}
+	
+	// 默认排序为升序
+	sort(a+0, a+5); // 从第0个排到第4个
+	sort(b, b+5); // 从第0个排到第4个
+	sort(c, c+5); // 从第0个排到第4个
+	for(int i=0; i<5; i++){
+		cout << a[i] << ' ' << b[i] << ' ' << c[i] << endl;
+	}
+	
+	// 自定义排序
+	sort(a, a+5, cmp); // 写一个cmp函数定义排序规则
+	
+	return 0;
+}
+```
+**3. 二维数组**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[10][10] = {}; // 理解为10x10的表格
+	
+	// 输出每一行每一列的内容
+	for(int i=0; i<10; i++){
+		for(int j=0; j<10; j++){
+			cout << a[i][j] << ' ';
+		}
+		cout << endl;
+	}
+	return 0;
+}
+```
+# 007 字符串
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 输入输出字符串**
+```c++
+#include <iostream>
+#include <cstring> // 引入字符串
+
+using namespace std;
+
+int main(){
+	// 使用char数组
+	char a[10] = {}, b[10] = {};
+	
+	cin >> a; // 不含空格输入
+	cin.getline(b, 10); // 含空格输入
+	
+	for(int i=0; i<10; i++){
+		cout << a[i] << endl;
+	}
+	
+	cout << strlen(a) << endl; // 用于计算数组中有效字符的个数
+	
+	/*
+	----------样例----------
+	// 输多了不要
+	输入：abcdefghijklmn
+	输出：a b c d e f g h i j
+	// 输少了不补
+	输入：abcde
+	输出：a b c d e
+	// 只读到空格之前
+	输入：abcdef ghijklmn
+	输出：a b c d e f
+	------------------------
+	*/
+	
+	// 使用string
+	string s1, s2;
+	
+	cin >> s1; // 不含空格输入
+	getline(cin, s2); // 含空格输入
+	
+	int len_s1 = s1.length(); // 求出s1的长度
+	for(int i=0; i<len; i++){
+		cout << s1[i] << endl; // 使用和数组相同的格式读取s1对应下标的字符并输出，同样也可以修改单个字符
 	}
 	
 	return 0;
 }
 ```
+**2. 字符串拼接、比较和复制**
+```c++
+#include <iostream>
+#include <cstring>
 
+using namespace std;
 
-
+int main(){
+	string s1, s2;
+	cin >> s1 >> s2;
+	
+	char a[20] = {}, b[10] = {};
+	cin >> a >> b;
+	
+	// 字符串拼接
+	cout << s1 + s2 << endl; // string类型，直接用+拼接
+	strcat(a, b); // 将b拼接到a后面，因此a要足够长
+	
+	// 字符串比较
+	cout << strcmp(a, b) << endl; // 返回值等于0：a=b；返回值大于0：a>b；返回值小于0：a<b
+	cout << (s1 == s2) << endl; // 一位一位比较，如果条件为真，则输出1，否则为0
+	
+	// 字符串复制
+	strcpy(a, b); // 将a替换为b的内容
+	s1 = s2; // 直接赋值
+	
+	return 0;
+}
+```
+# 008 函数
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 
 
