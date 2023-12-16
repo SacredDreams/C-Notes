@@ -10,6 +10,7 @@
   - [009 结构体](https://github.com/SacredDreams/C-Notes/blob/main/README.md#009-结构体)
   - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
   - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
+  - [012 位运算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#012-位运算)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -512,13 +513,16 @@ int main(){
 # 005 文件的写入和读取
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
-**1. 主函数内输入输出**  
-文字说明：输出从0 ~ n中除了x和y的所有数字  
+**1. 主函数内输入输出**
+```
+文字说明：输出从0 ~ n中除了x和y的所有数字
+```
 *test.in*
 ```
-120 55 80	
+120 55 80
 ```
-```test.in```文件中依次输入的为n、x、y  
+``test.in``文件中依次输入的为n、x、y  
+
 *main.cpp*
 ```c++
 #include <iostream>
@@ -553,8 +557,10 @@ int main(){
 ```
 ```test.out```为输出结果，和控制台输出相同  
 
-**2. 创建全局输入输出流**  
-文字说明：输入a和b，计算a*b的结果  
+**2. 创建全局输入输出流**
+```
+文字说明：输入a和b，计算a*b的结果
+```
 *test1.in*
 ```
 10 30
@@ -724,7 +730,7 @@ int main(){
 }
 ```
 
-**举例**：素数筛法（找出2 ~ n之间的质数）
+**举例1**：素数筛法（找出2 ~ n之间的质数）
 ```c++
 #include <iostream>
 
@@ -746,6 +752,42 @@ int main(){
 			cout << i << ' ';
 		}
 	}
+	return 0;
+}
+```
+**举例2**：杨辉三角
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int a[n + 1][n + 1] = {};
+	
+	//初始化数据
+	for(int i=1; i<=n; i++){
+		for(int j=1; j<=i; j++){
+			if(j == 1 || j == i){
+				a[i][j] = 1;
+			}
+		}
+	}
+	
+	for(int i=3; i<=n; i++){
+		for(int j=2; j<=i-1; j++){
+			a[i][j] = a[i - 1][j] + a[i - 1][j - 1];
+		}
+	}
+	
+	for(int i=1; i<=n; i++){
+		for(int j=1; j<=i; j++){
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
 	return 0;
 }
 ```
@@ -1046,17 +1088,19 @@ int main(){
 }
 ```
 
-**2. 结构体的排序**  
-> 【题目叙述】：  
-> 输入数字n作为一个班的人数，再分别输入n个人的name，chinese，math三项信息，找出总分最高的同学并输出他的所有信息和总分  
-> 【样例输入】：  
-> 4  
-> gaoxiang 78 96  
-> wangxi 70 99  
-> liujia 90 87  
-> zhangjin 78 91  
-> 【样例输出】：  
-> liujia 90 87 177  
+**2. 结构体的排序**
+```
+【题目叙述】：
+	输入数字n作为一个班的人数，再分别输入n个人的name，chinese，math三项信息，找出总分最高的同学并输出他的所有信息和总分
+【样例输入】：
+	4
+	gaoxiang 78 96
+	wangxi 70 99
+	liujia 90 87
+	zhangjin 78 91
+【样例输出】：  
+	liujia 90 87 177
+```
 ```c++
 #include <iostream>
 #include <algorithm>
@@ -1092,8 +1136,10 @@ int main(){
 # 010 高精度数
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
-**1. 高精度加法**  
+**1. 高精度加法**
+```
 求和：123456789876543212345678 + 82378478238734783476234 = ？
+```
 ```c++
 #include <iostream>
 
@@ -1137,6 +1183,187 @@ int main(){
 
 # 011 递归
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+递归的两种形式：自己调用自己、两函数互相调用
+
+**1. 简单举例**
+```
+文字说明：a比b大2岁，b比c大2岁，c比d大2岁，d比e大2岁，已知e是10岁，求a的年龄
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+int age(n){
+	if(n == 1){ // 结束条件
+		return 10;
+	}
+	// 做的事情
+	return age(n - 1) + 2;
+}
+
+int main(){
+	int n;
+	cin >> n
+	cout << age(n) << endl;
+	return 0;
+}
+```
+
+**2. 斐波那切数列**
+```
+文字说明：一个数列，第一个数字为1，第二个数字为1，每下一个数字的值为其前两个数字值的和，例如：1 1 2 3 5 8 13 ...，求该数列的第n位数字的值
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+int fun(int n){
+	if(n == 1 || n == 2){
+		return 1;
+	}
+	return fun(n - 1) + fun(n - 2);
+}
+
+int main(){
+	int n;
+	cin >> n;
+	cout << fun(n) << endl;
+	return 0;
+}
+```
+
+**3. 汉诺塔问题**
+```
+文字说明： 给定三根柱子，记为 A,B,C ，其中 A 柱子上有 n 个盘子，从上到下编号为 0 到 n-1 ，且上面的盘子一定比下面的盘子小。问：将 A 柱上的盘子经由 B 柱移动到 C柱最少需要多少次？要求：一次只能挪一个盘子且盘子不能压在小盘子上，输出结果为每一步的移动过程
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+void hanoi(int n, char X, char Y, char Z){ // 分别为原柱，过渡柱，目标柱
+	if(n == 1){
+		cout << X << "→" << Z << endl;
+		return;
+	}
+	//1
+	hanoi(n - 1, X, Z, Y); //将n-1块从X到Y
+	//2
+	cout << X << "→" << Z << endl;
+	//5
+	hanoi(n - 1, Y, X, Z); //将n-1块从Y到Z
+}
+
+int main(){
+	int n;
+	cin >> n;
+	hanoi(n, 'X', 'Y', 'Z');
+	
+	return 0;
+}
+```
+
+**4. 全排列问题**
+```
+【问题叙述】：
+	输出自然数1~n的所有不重复的数列，即n的全排列，要求所产生的任一数字序列中不允许出现重复的数字
+【输入格式】：
+	1≤n≤9
+【样例输入】：
+	3
+【样例输出】：
+	123
+	132
+	213
+	231
+	312
+	321
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+int n, a[10], b[10];
+
+void pl(int k){
+	//结束条件 
+	if(k == n + 1){
+		for(int i=1; i<=n; i++){
+			cout << a[i];
+		}
+		cout << endl;
+		return;
+	}
+	
+	//给k位分配数
+	for(int i=1; i<=n; i++){ //从1到n之间选择 
+		if(b[i] == 0){
+			a[k] = i;
+			b[i] = 1;
+			pl(k + 1);
+			b[i] = 0; //回溯 
+		}
+	}
+}
+
+int main(){
+	cin >> n;
+	pl(1);
+	
+	return 0;
+}
+```
+
+**5. 角谷定理**
+```
+文字说明：输入一个自然数，若为偶数，则除以2，若为奇数，则乘以3再加1，经过多次运算之后，结果总是1，求经过多少次可以得到自然数1
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+int ans = 0;
+
+void fun(int n){
+	if(n == 1){
+		return;
+	}
+	ans ++;
+	if(n % 2 == 0){
+		fun(n / 2);
+	}else{
+		fun(n * 3 + 1);
+	}
+}
+
+int main(){
+	int n;
+	cin >> n;
+	fun(n);
+	cout << ans << endl;
+	
+	return 0;
+}
+```
+
+# 012 位运算
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+```c++
+/*
+按位与			&			如果两个相应的二进制位都是1，则为1，否则为0
+按位或			|			如果两个相应的二进制位其一为1，该位结果为1
+按位异或		^			如果参加运算的两个二进制位相同则为0，否则为1
+按位取反		~			对二进制数的每一位进行取反，0变1，1变0
+左移运算		<<			用来将一个二进制数左移n位，右侧补0
+右移运算		>>			用来将一个二进制数右移，超出部分舍弃，高位补0
+*/
+```
 
 
 
