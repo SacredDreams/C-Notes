@@ -7,7 +7,9 @@
   - [006 数组](https://github.com/SacredDreams/C-Notes/blob/main/README.md#006-数组)
   - [007 字符串](https://github.com/SacredDreams/C-Notes/blob/main/README.md#007-字符串)
   - [008 函数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#008-函数)
-
+  - [009 结构体](https://github.com/SacredDreams/C-Notes/blob/main/README.md#009-结构体)
+  - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
+  - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -15,18 +17,19 @@
 **1. 输出样例**
 ```C++
 #include <iostream> // 输入输出
+#include <cstdio> // 输入输出
 
 using namespace std;
 
 int main(){
   	// 输出字符串
   	cout << "hello world" << endl; // 末尾endl用来换行，也可写作“cout << "hello world";”，即没有换行
-  
+  	
   	// 输入字符
   	char ch;
   	cin >> ch; // g 注意：若输入为数字，则输出为数字字符，而非数字
   	cout << ch << endl; // g
-  
+  	
   	// 输出一个金字塔
   	cout << "     *" << endl;
   	cout << "    ***" << endl;
@@ -34,7 +37,26 @@ int main(){
   	cout << "  *******" << endl;
   	cout << " *********" << endl;
   	cout << "***********" << endl;
-
+	
+	// 使用scanf和printf进行格式化输入输出
+	/*
+	int			%d
+	long			%ld
+	float			%f
+	double 			%lf
+	char			%c
+	string			%s
+	
+	double保留2位小数	%.2lf（保留小数默认四舍五入）
+	*/
+	int n1 = 1;
+	double n2 = 2.33333;
+	char c1, c2;
+	printf("n1的值为%d，n2的值约等于%.3lf", n1, n2); // n1的值为1，n2的值约等于2.333
+	cout << endl; // 换行
+	scanf("%c%c", &c1, &c2); // a b 注意：一定要加地址符“&”
+	printf("%d", c1 + c2); // 107
+	
   	return 0; // 程序结束
 }
 ```
@@ -57,6 +79,8 @@ int main(){
 	>=	>	<	<=	==	!=
 	// 逻辑运算符（优先级从高到低）
 	!	&&	||
+	// 三目运算符
+	() ? () : ()
 	*/
 	
   	// 进行数学计算
@@ -79,7 +103,9 @@ int main(){
   	cout << sqrt(10000) << endl; // 100 开方运算
   	cout << abs(-2) << endl; // 2 绝对值运算
   	
-  	cout << fixed << setprecision(5) << c << endl; // 5.22000 保留五位小数
+  	cout << fixed << setprecision(5) << c << endl; // 5.22000 保留五位小数（四舍五入）
+	
+	cout << ((1 > 2) ? 3 : 4) << endl; // 三目运算：如果括号内条件成立返回冒号前的值，否则返回冒号后的值
   	
   	return 0;
 }
@@ -133,6 +159,7 @@ int main(){
   	return 0;
 }
 ```
+
 # 002 数据类型
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -219,6 +246,7 @@ int main(){
   	return 0;
 }
 ```
+
 **2. 数据类型转换**
 ```c++
 #include <iostream>
@@ -245,6 +273,7 @@ int main(){
   	return 0;
 }
 ```
+
 # 003 条件判断
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -301,6 +330,7 @@ int main(){
   	return 0;
 }
 ```
+
 **2. 嵌套判断**
 ```c++
 #include <iostream>
@@ -328,6 +358,7 @@ int main(){
   	return 0;
 }
 ```
+
 **3. switch语句**
 ```c++
 #include <iostream>
@@ -369,15 +400,20 @@ using namespace std;
 int main(){
 	int a = 0;
 	
-	cout << a << endl; // 0000
+	cout << a << endl; // 0
+	a = 0;
 	cout << a ++ << endl; // 0 先输出后++
+	a = 0;
 	cout << ++ a << endl; // 1 先++后输出
+	a = 0;
 	cout << a -- << endl; // 0 先输出后--
+	a = 0;
 	cout << -- a << endl; // -1 先--后输出
 	
 	return 0;
 }
 ```
+
 **2. while循环**
 ```c++
 #include <iostream>
@@ -410,8 +446,8 @@ int main(){
 	// 遍历0 ~ 100之间的数，如果这个数是偶数，则输出“偶数”，不是则跳过
 	int num3 = -1;
 	while(num3 < 101){ // 或写作“num3 <= 100”
-		num ++;
-		if(num % 2){
+		num3 ++;
+		if(num3 % 2){
 			continue; // 结束当次循环，直接进入下一次循环
 		}
 		cout << "偶数" << endl;
@@ -420,6 +456,7 @@ int main(){
 	return 0;
 }
 ```
+
 **3. do-while循环**
 ```c++
 #include <iostream>
@@ -442,6 +479,7 @@ int main(){
 	return 0;
 }
 ```
+
 **4. for循环**
 ```c++
 #include <iostream>
@@ -470,6 +508,7 @@ int main(){
 	return 0;
 }
 ```
+
 # 005 文件的写入和读取
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -513,6 +552,7 @@ int main(){
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
 ```
 ```test.out```为输出结果，和控制台输出相同  
+
 **2. 创建全局输入输出流**  
 文字说明：输入a和b，计算a*b的结果  
 *test1.in*
@@ -523,6 +563,7 @@ int main(){
 ```c++
 #include <iostream>
 #include <cstdio>
+#include <fstream> // 全局输入输出流
 
 using namespace std;
 
@@ -552,6 +593,7 @@ int main(){
 ```
 300
 ```
+
 # 006 数组
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -574,8 +616,8 @@ int main(){
 	
 	// 将数组中的数字都加上1
 	for(int i=0; i<5; i++){
-		a[i] ++; // 使用++将数组中的数据直接修改，也可以写作“a[i] += 1”
-		cout << a[i] << endl; // 1 2 3 4 5
+		arr[i] ++; // 使用++将数组中的数据直接修改，也可以写作“arr[i] += 1”
+		cout << arr[i] << endl; // 1 2 3 4 5
 	}
 	
 	// 将数组每个元素的ASCII码加1
@@ -603,6 +645,7 @@ int main(){
 	return 0;
 }
 ```
+
 **2. 数组长度及元素的输入**
 ```c++
 #include <iostream>
@@ -623,6 +666,7 @@ int main(){
 	return 0;
 }
 ```
+
 **3. 对数组进行排序**
 ```c++
 #include <iostream>
@@ -659,7 +703,8 @@ int main(){
 	return 0;
 }
 ```
-**3. 二维数组**
+
+**4. 二维数组**
 ```c++
 #include <iostream>
 
@@ -678,6 +723,33 @@ int main(){
 	return 0;
 }
 ```
+
+**举例**：素数筛法（找出2 ~ n之间的质数）
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int a[n + 1] = {};
+	for(int i=2; i<n/2; i++){
+		if(a[i] == 0){
+			for(int j=i*2; j<=n; j+=i){
+				a[j] = 1;
+			}
+		}
+	}
+	for(int i=2; i<=n; i++){
+		if(a[i] == 0){
+			cout << i << ' ';
+		}
+	}
+	return 0;
+}
+```
+
 # 007 字符串
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
@@ -722,13 +794,14 @@ int main(){
 	getline(cin, s2); // 含空格输入
 	
 	int len_s1 = s1.length(); // 求出s1的长度
-	for(int i=0; i<len; i++){
+	for(int i=0; i<len_s1; i++){
 		cout << s1[i] << endl; // 使用和数组相同的格式读取s1对应下标的字符并输出，同样也可以修改单个字符
 	}
 	
 	return 0;
 }
 ```
+
 **2. 字符串拼接、比较和复制**
 ```c++
 #include <iostream>
@@ -758,8 +831,313 @@ int main(){
 	return 0;
 }
 ```
+
 # 008 函数
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 函数结构**
+```c++
+#include <iostream>
+
+using namespace std;
+
+/*
+<返回值类型> <函数名>(<形参1>, <形参2>, ...){
+	<函数体>
+}
+*/
+
+void f1(){ // 无返回值
+	cout << "f1" << endl;
+}
+
+void f2(int a, int b){ // 传递两个形参
+	cout << a + b << endl;
+}
+
+int f3(int a, int b){ // 有返回值
+	return a * b; // 可以是值，也可以是表达式
+}
+
+int f4(int a, int b); // 若将调用写在声明语句之前，则需要添加此语句声明
+
+int main(){
+	f1(); // f1 调用f1()函数，输出了f1
+	f2(2, 3); // 5 调用f2()函数，输出了2+3的和
+	cout << f3(4, 6) << endl; // 24 调用f3()函数，输出了4*6的积
+	cout << f4(7, 10) << endl;
+	return 0;
+}
+
+int f4(int a, int b){
+	a *= b;
+	return a / (b * 2);
+}
+```
+
+**举例1**：用函数判断质数
+```c++
+#include <iostream>
+
+using namespace std;
+
+bool isPrime(int n){
+	if(n < 2){
+		return false;
+	}
+	for(int i=2; i<n; i++){
+		if(n % i == 0){
+			return false;
+		}
+	}
+	return true;
+}
+
+int main(){
+	int n;
+	cin >> n;
+	if(isPrime(n)){
+		cout << "YES" << endl;
+	}else{
+		cout << "NO" << endl;
+	}
+}
+```
+
+**举例2**：判断最大值
+```c++
+#include <iostream>
+
+using namespace std;
+
+int fun(int a, int b){
+	return (a > b) ? a : b;
+	// 也可写为 return max(a, b); 利用max判断最大值
+}
+
+int main(){
+	int a, b;
+	cin >> a >> b;
+	cout << fun(a, b) << endl;
+	return 0;
+}
+```
+
+**2. 传递参数**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int f1(int a, int b){
+	return a + b;
+}
+
+int f2(int arr[]){
+	int temp = 0;
+	arr[0] = 1;
+	for(int i=0; i<5; i++){
+		temp += arr[i];
+	}
+	return temp;
+}
+
+void f3(int &a, int &b){
+	swap(a, b);
+}
+
+int main(){
+	int a[5] = {0, 1, 2, 3, 4};
+	
+	// 传递数字
+	cout << f1(30, 50) << endl; // 80
+	
+	// 传递数组（在函数内修改数组的值,在函数外读取到的数组的值也会随之改变）
+	cout << f2(a) << endl; // 11
+	int temp1 = 0;
+	for(int i=0; i<5; i++){
+		temp1 += a[i];
+	}
+	cout << temp1 << endl; // 11;
+	
+	// 传递地址（传递地址会改变值）
+	int n1 = 1, n2 = 2;
+	cout << n1 << ' ' << n2 << endl; // 1 2
+	f3(n1, n2); 
+	cout << n1 << ' ' << n2 << endl; // 2 1
+	
+	return 0;
+}
+```
+
+**3. 变量的作用域**
+```c++
+#include <iostream>
+
+using namespace std;
+
+/*
+在函数外的叫做全局变量，函数内部的叫局部变量
+就近原则：查找变量时，会优先查找作用域内的变量，如果没有再去上级作用域寻找变量
+*/
+
+int a = 0; // 作用域：全局
+
+void f(){
+	int b = 0; // 作用域：此函数内
+}
+
+int main(){
+	int c = 0; // 作用域：此函数内
+	
+	cout << a << endl; // 0
+	
+	int a = 1;
+	cout << a << endl; // 1
+	
+	return 0;
+}
+```
+
+# 009 结构体
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 结构体变量声明**
+```c++
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+/*
+struct <结构体名称>{
+	<数据类型1> <成员1>;
+	<数据类型2> <成员2>;
+	<数据类型3> <成员3>;
+	......
+	<数据类型4> <成员4>;
+};
+*/
+
+struct student{
+	string name;
+	double chinese, math, english;
+	int number;
+}a[30];
+// 可以直接在后面声明一个长度30，类型为student的数组a，数组的每一个元素都是一个结构体变量
+// 每一个结构体变量都有name, chinese, math, english, number这几项信息
+
+int main(){
+	// 初始化信息
+	
+	// 方法1
+	student stu1 = {"xiaohong", 100.00, 99.00, 100.00, 1}; // 依次填写信息
+	
+	// 方法2
+	student stu2;
+	stu2.name = "xiaoming";
+	stu2.number = 10;
+	
+	// 方法3
+	student stu3;
+	cin >> stu3.name >> stu3.number;
+	
+	return 0;
+}
+```
+
+**2. 结构体的排序**  
+> 【题目叙述】：  
+> 输入数字n作为一个班的人数，再分别输入n个人的name，chinese，math三项信息，找出总分最高的同学并输出他的所有信息和总分  
+> 【样例输入】：  
+> 4  
+> gaoxiang 78 96  
+> wangxi 70 99  
+> liujia 90 87  
+> zhangjin 78 91  
+> 【样例输出】：  
+> liujia 90 87 177  
+```c++
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct stu{
+	string name;
+	int chinese, math, score;
+};
+
+bool cmp(stu a, stu b){ // 排序的是结构体变量，socre是排序的依据，所以括号内两个值的类型为stu类型
+	return a.score > b.score; // 降序排序
+}
+
+int main(){
+	int n;
+	cin >> n;
+	stu a[n + 1] = {}; // 结构体变量数组，所以类型应为stu类型
+	for(int i=1; i<=n; i++){
+		cin >> a[i].name >> a[i].chinese >> a[i].math;
+		a[i].score = a[i].chinese + a[i].math;
+	}
+	
+	sort(a + 1, a + n + 1, cmp); // 结构体排序必须写cmp函数，无法自动升序排序
+	
+	cout << a[1].name << ' ' << a[1].chinese << ' ' << a[1].math << ' ' << a[1].score << endl;
+	
+	return 0;
+}
+```
+
+# 010 高精度数
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 高精度加法**  
+求和：123456789876543212345678 + 82378478238734783476234 = ？
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 将大数字输入到字符串中
+	char a[100] = {}, b = [100] = {};
+	cin >> a >> b;
+	
+	// 倒序转存入整形数组中
+	int c[100] = {}, d[100] = {}, e[100] = {}; // 数组e用来储存最后的结果
+	int len_a = strlen(a), len_b = strlen(b);
+	for(int i=0; i<len_a; i++){
+		c[len_a - 1 - i] = a[i] - '0';
+	}
+	for(int i=0; i<len_b; i++){
+		d[len_b - 1 - i] = b[i] - '0';
+	}
+	
+	// 从低位开始进行运算
+	int len_max = max(len_a, len_b), t = 0; // len_max记录长度的最大值，t记录进位
+	for(int i=0; i<len_max; i++){
+		e[i] = (c[i] + d[i] + t) % 10; // 对应位相加法后余下的
+		t = (c[i] + d[i] + t) / 10; // 计算余数
+	}
+	
+	// 判断是否产生了新的最高位
+	if(t){
+		e[len_max ++] = i;
+	}
+	
+	// 倒序输出为结果
+	for(int i=len_max-1; i>=0; i--){
+		cout << e[i];
+	}
+	
+	return 0;
+}
+```
+
+# 011 递归
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
 
 
 
