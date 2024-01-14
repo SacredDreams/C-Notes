@@ -11,6 +11,7 @@
   - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
   - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
   - [012 位运算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#012-位运算)
+  - [013 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-冒泡排序)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -869,6 +870,10 @@ int main(){
 	// 字符串复制
 	strcpy(a, b); // 将a替换为b的内容
 	s1 = s2; // 直接赋值
+
+	// 截取字符串
+	str = "123456789"
+	str.substr(3, 3); // 456 参数1是开始下标，参数2是取的个数
 	
 	return 0;
 }
@@ -1365,7 +1370,64 @@ int main(){
 */
 ```
 
+# 013 冒泡排序
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
+冒泡排序，时间复杂度：n^2
+ ```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int a[n + 1] = {};
+	for(int i=1; i<=n; i++){
+		cin >> a[i];
+	}
+	for(int i=1; i<=n-1; i++){
+		for(int j=1; j<=n-i; j++){
+			if(a[j] > a[j + 1]){
+				swap(a[j + 1], a[j]);
+			}
+		}
+	}
+	for(int i=1; i<=n; i++){
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
+冒泡排序（优化）
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int a[n + 1] = {};
+	for(int i=1; i<=n; i++){
+		cin >> a[i];
+	}
+	for(int i=1; i<=n-1; i++){
+		int ans = 0; // 创建变量 
+		for(int j=1; j<=n-i; j++){
+			if(a[j] > a[j + 1]){
+				ans ++; // 如果没有调换顺序，则ans为0 
+				swap(a[j + 1], a[j]);
+			}
+		}
+		if(!ans) break; // 如果此次if语句没有执行说明已经排序完成，提前结束循环 
+	}
+	for(int i=1; i<=n; i++){
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
 
 
 
