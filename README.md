@@ -11,7 +11,7 @@
   - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
   - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
   - [012 位运算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#012-位运算)
-  - [013 #include <cctype>](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-#include-<cctype>)
+  - [013 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-cctype)
   - [014 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-冒泡排序)
 
 # 001 输入输出与基本数学计算
@@ -1371,7 +1371,7 @@ int main(){
 */
 ```
 
-# 013 #include <cctype>
+# 013 cctype
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 **1. 判断**
