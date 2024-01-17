@@ -11,7 +11,8 @@
   - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
   - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
   - [012 位运算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#012-位运算)
-  - [013 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-冒泡排序)
+  - [013 #include <cctype>](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-#include-<cctype>)
+  - [014 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-冒泡排序)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -870,7 +871,7 @@ int main(){
 	// 字符串复制
 	strcpy(a, b); // 将a替换为b的内容
 	s1 = s2; // 直接赋值
-
+	
 	// 截取字符串
 	str = "123456789"
 	str.substr(3, 3); // 456 参数1是开始下标，参数2是取的个数
@@ -1370,10 +1371,24 @@ int main(){
 */
 ```
 
-# 013 冒泡排序
+# 013 #include <cctype>
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
-冒泡排序，时间复杂度：n^2
+**1. 判断**
+ - `islower()`判断是否为小写字母
+ - `isupper()`判断是否为大写字母
+ - `isalnum()`判断是否为大写字母、小写字母、数字字符
+ - `isdigit()`判断是否为数字字符
+ - `isalpha()`判断是否为字母字符
+
+**2. 转化**
+ - `toupper()`转化为大写字母
+ - `tolower()`转化为小写字母
+
+# 014 冒泡排序
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 冒泡排序** 时间复杂度：n^2
  ```c++
 #include <iostream>
 
@@ -1399,7 +1414,7 @@ int main(){
 	return 0;
 }
 ```
-冒泡排序（优化）
+**2. 优化后的冒泡排序**
 ```c++
 #include <iostream>
 
