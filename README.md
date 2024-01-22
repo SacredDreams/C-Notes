@@ -11,8 +11,9 @@
   - [010 高精度数](https://github.com/SacredDreams/C-Notes/blob/main/README.md#010-高精度数)
   - [011 递归](https://github.com/SacredDreams/C-Notes/blob/main/README.md#011-递归)
   - [012 位运算](https://github.com/SacredDreams/C-Notes/blob/main/README.md#012-位运算)
-  - [013 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-cctype)
-  - [014 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-冒泡排序)
+  - [013 零碎知识点总结](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-零碎知识点总结)
+  - [014 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-cctype)
+  - [015 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#015-冒泡排序)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -732,32 +733,7 @@ int main(){
 }
 ```
 
-**举例1**：素数筛法（找出2 ~ n之间的质数）
-```c++
-#include <iostream>
-
-using namespace std;
-
-int main(){
-	int n;
-	cin >> n;
-	int a[n + 1] = {};
-	for(int i=2; i<n/2; i++){
-		if(a[i] == 0){
-			for(int j=i*2; j<=n; j+=i){
-				a[j] = 1;
-			}
-		}
-	}
-	for(int i=2; i<=n; i++){
-		if(a[i] == 0){
-			cout << i << ' ';
-		}
-	}
-	return 0;
-}
-```
-**举例2**：杨辉三角
+**举例**：杨辉三角
 ```c++
 #include <iostream>
 
@@ -1371,7 +1347,109 @@ int main(){
 */
 ```
 
-# 013 cctype
+# 013 零碎知识点总结
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 拿取各个数位数字**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+  	int number = 123;
+	
+  	cout << number / 100 << endl; // 拿取百位
+  	cout << number % 100 / 10 << endl; // 拿取十位
+  	cout << number / 10 % 10 << endl; // 拿取十位
+  	cout << number % 10 << endl; // 拿取个位
+  	return 0;
+}
+```
+**2. 素数筛法**（找出2 ~ n之间的质数）
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int a[n + 1] = {};
+	for(int i=2; i<n/2; i++){
+		if(a[i] == 0){
+			for(int j=i*2; j<=n; j+=i){
+				a[j] = 1;
+			}
+		}
+	}
+	for(int i=2; i<=n; i++){
+		if(a[i] == 0){
+			cout << i << ' ';
+		}
+	}
+	return 0;
+}
+```
+**3. 将int类型数字倒序（123变321）**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n;
+	cin >> n;
+	int ans = 0;
+	// 倒序 
+	while(n){
+		ans = ans * 10 + n % 10;
+		n /= 10;
+	}
+	cout << ans << endl;
+	return 0;
+}
+```
+
+**4. 最长递增子序列**
+```
+【问题叙述】：
+	太阳黑子是太阳表面因温度相对较低而显得“黑”的局部区域，一般成群出现在太阳表面，并且对地球造成很明显的影响。为此，人类根据多项科学研究追溯到几十万什前的黑子活动，并重建了数据记录。小蓝拿到了一组微据，有 N 个整数，表示连续 N 年里每一年的太阳黑子最大数量，他希望找出所有数量连续增加的记录，并计算出连续增加记录中的最长连续年数。例如: N=8，连续 8 年里太阳黑子最大数量依次是 2、3、1、2、4、8、4、9，数量连续增加的记录有 ((2、3)、(1、2)、(1、2、4)、(1、2、4、8)、(2、4)、(2、4、8)、(4、8)和(4、9)，连续增加的年数分别是 2、2、3、4、2、3、2、2，其中最长连续年数为 4，故最后输出 4。
+注意：1、2、4、4、9 这种情况算是连续增加的。
+	输入：第一行输入一个正整数 N(1≤N≤1000000)，表示数据记录的年数。第二行输入 N 个用空格隔开的正整数( 0< 正整数 <1e9 )，表示连续 N 年的太阳黑子最大数量。
+	输出：输出一个非负整数，表示太阳黑子最大数量连续增加记录中的最长连续年数。
+【样例输入】：
+	8
+	2 3 1 2 4 8 4 9
+【样例输出】：
+	4
+```
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 最长递增子序列
+	int n, max_len = 1, cur_len = 1;
+	cin >> n;
+	int a[n] = {};
+	for(int i=0; i<n; i++){
+		cin >> a[i];
+	}
+	for(int i=1; i<=n; i++){
+		if(a[i] >= a[i - 1]) cur_len ++;
+		else{
+			if(cur_len > max_len) max_len = cur_len;
+			cur_len = 1;
+		}
+	}
+	cout << max_len;
+	return 0;
+}
+```
+
+# 014 cctype
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 **1. 判断**
@@ -1385,7 +1463,7 @@ int main(){
  - `toupper()`转化为大写字母
  - `tolower()`转化为小写字母
 
-# 014 冒泡排序
+# 015 冒泡排序
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 **1. 冒泡排序** 时间复杂度：n^2
