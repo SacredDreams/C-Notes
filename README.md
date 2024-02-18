@@ -14,6 +14,7 @@
   - [013 零碎知识点总结](https://github.com/SacredDreams/C-Notes/blob/main/README.md#013-零碎知识点总结)
   - [014 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-cctype)
   - [015 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#015-冒泡排序)
+  - [016 插入排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#016-插入排序)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -1550,6 +1551,30 @@ int main(){
 }
 ```
 
+# 016 插入排序
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+
+**1. 插入排序**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int n = 8;
+	int a[n] = {1, 6, 52, 12, 23, 3, 43, 42};
+	for(int i=1; i<n; i++){
+		for(int j=i; j - 1 >= 0 && a[j - 1] > a[j]; j--){ // j - 1 >= 0 防止数组越界
+			swap(a[j - 1], a[j]);
+		}
+	}
+	for(int i=0; i<n; i++){
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+
+```
 
 
 
