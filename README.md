@@ -15,7 +15,7 @@
   - [014 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-cctype)
   - [015 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#015-冒泡排序)
   - [016 插入排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#016-插入排序)
-  - [017 前缀和、差分](https://github.com/SacredDreams/C-Notes/blob/main/README.md#017-前缀和、差分)
+  - [017 前缀和与差分](https://github.com/SacredDreams/C-Notes/blob/main/README.md#017-前缀和与差分)
   - [018 二分](https://github.com/SacredDreams/C-Notes/blob/main/README.md#018-二分)
 
 # 001 输入输出与基本数学计算
@@ -1578,10 +1578,10 @@ int main(){
 
 ```
 
-# 017 前缀和、差分
+# 017 前缀和与差分
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
-**1. 一维 前缀和**
+**1. 一维 前缀和**  
 计算一维前缀和数组
 ```c++
 #include <iostream>
@@ -1628,7 +1628,7 @@ int main(){
 	return 0;
 }
 ```
-**2. 二维 前缀和**
+**2. 二维 前缀和**  
 计算二维前缀和数组
 ```c++
 #include <iostream>
@@ -1695,7 +1695,7 @@ int main(){
 	return 0;
 }
 ```
-**3. 一维 差分**
+**3. 一维 差分**  
 计算一维差分数组
 ```c++
 #include <iostream>
@@ -1749,7 +1749,8 @@ int main(){
 	return 0;
 }
 ```
-**4. 二维 差分**
+**4. 二维 差分**  
+计算二维差分数组
 ```c++
 #include <iostream>
 
