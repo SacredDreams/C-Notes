@@ -15,6 +15,8 @@
   - [014 cctype](https://github.com/SacredDreams/C-Notes/blob/main/README.md#014-cctype)
   - [015 冒泡排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#015-冒泡排序)
   - [016 插入排序](https://github.com/SacredDreams/C-Notes/blob/main/README.md#016-插入排序)
+  - [017 前缀和、差分](https://github.com/SacredDreams/C-Notes/blob/main/README.md#017-前缀和、差分)
+  - [018 二分](https://github.com/SacredDreams/C-Notes/blob/main/README.md#018-二分)
 
 # 001 输入输出与基本数学计算
  [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
@@ -45,7 +47,7 @@ int main(){
 	
 	// 使用scanf和printf进行格式化输入输出
 	/*
-	int			%d
+	int				%d
 	long			%ld
 	float			%f
 	double 			%lf
@@ -178,15 +180,15 @@ typedef long long ll; // 使用long long声明时，可以简写为ll
 
 int main(){
 	/*
-	short 短整型          -32768 ~ 32767         有效位数：5     占用字节：2
-	int 基本整形          -2^31 ~ (2^31)-1       有效位数：10    占用字节：4
-	long long 长整型      -2^63 ~ (2^63)-1       有效位数：19    占用字节：8
-    	flaat 单精度浮点型    -3.4e-38 ~ 3.4e+38     有效位数：7     占用字节：4
-	double 双精度浮点型   -1.7e-308 ~ 1.7e+308   有效位数：15    占用字节：8
-	long double 扩展双精度型
-    	char 字符型           256个不同字符                          占用字节：1
-    	bool 布尔型(True/False)
-    	const	常量
+	short		短整型			-32768 ~ 32767			有效位数：5			占用字节：2
+	int			基本整形		-2^31 ~ (2^31)-1		有效位数：10		占用字节：4
+	long long	长整型			-2^63 ~ (2^63)-1		有效位数：19		占用字节：8
+	flaat		单精度浮点型	-3.4e-38 ~ 3.4e+38		有效位数：7			占用字节：4
+	double		双精度浮点型	-1.7e-308 ~ 1.7e+308	有效位数：15		占用字节：8
+	long double	扩展双精度型
+	char		字符型			256个不同字符								占用字节：1
+	bool		布尔型			True False
+	const		常量
   	*/
 	
   	/*
@@ -1564,7 +1566,7 @@ int main(){
 	int n = 8;
 	int a[n] = {1, 6, 52, 12, 23, 3, 43, 42};
 	for(int i=1; i<n; i++){
-		for(int j=i; j - 1 >= 0 && a[j - 1] > a[j]; j--){ // j - 1 >= 0 防止数组越界
+		for(int j=i; j-1>=0 && a[j-1]>a[j]; j--){ // j-1>=0 防止数组越界
 			swap(a[j - 1], a[j]);
 		}
 	}
@@ -1576,8 +1578,223 @@ int main(){
 
 ```
 
+# 017 前缀和、差分
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
+**1. 一维 前缀和**
+计算一维前缀和数组
+```c++
+#include <iostream>
 
+using namespace std;
+
+int main(){
+	int a[6] = {0, 1, 2, 3, 4, 5}; 	// 0用作补位，从下标1开始计算
+	int s[6] = {}; 					// 前缀和数组，和原数组等长
+	
+	// 计算前缀和数组
+	for(int i=1; i<=5; i++){
+		s[i] = s[i - 1] + a[i];
+	}
+	
+	// 输出
+	for(int i=1; i<=5; i++){
+		cout << s[i] << " "; // 1 3 6 10 15
+	}
+	
+	return 0;
+}
+```
+给定区间 [x, y] 求和
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[6] = {0, 1, 2, 3, 4, 5}, s[6] = {};
+	
+	// 计算前缀和数组
+	for(int i=1; i<=5; i++){
+		s[i] = s[i - 1] + a[i];
+	}
+	
+	int L, R;
+	cin >> L >> R; // 2 4
+	
+	// 对规定部分进行求和
+	cout << s[R] - s[L - 1] << endl; // 9
+	
+	return 0;
+}
+```
+**2. 二维 前缀和**
+计算二维前缀和数组
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	// 原数组 a，0用作补位
+	int a[6][6] = {
+		0, 0, 0, 0, 0, 0,
+		0, 1, 1, 1, 1, 1,
+		0, 1, 1, 1, 1, 1,
+		0, 1, 1, 1, 1, 1,
+		0, 1, 1, 1, 1, 1,
+		0, 1, 1, 1, 1, 1
+	};
+	
+	// 计算前缀和数组
+	int s[6][6] = {};
+	for(int i=1; i<=5; i++){
+		for(int j=1; j<=5; j++){
+			s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+		}
+	}
+	
+	// 输出
+	for(int i=1; i<=5; i++){
+		for(int j=1; j<=5; j++){
+			cout << s[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
+	return 0;
+}
+```
+给定区间 [(x1, y1), (x2, y2)]，求子矩阵数字和
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[4][4] = {
+		0, 0, 0, 0,
+		0, 1, 2, 4,
+		0, 3, 2, 1,
+		0, 5, 1, 0
+	}, s[4][4] = {};
+	
+	// 计算前缀和数组
+	for(int i=1; i<=3; i++){
+		for(int j=1; j<=3; j++){
+			s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+		}
+	}
+	
+	int x1, y1, x2, y2;
+	cin >> x1 >> y1 >> x2 >> y2;
+	
+	// 计算子矩阵面积并输出
+	cout << s[x2][y2] - s[x2 - 1][y1] - s[x1][y2 - 1] + s[x1 - 1][y1 - 1] << endl;
+	
+	return 0;
+}
+```
+**3. 一维 差分**
+计算一维差分数组
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[6] = {0, 1, 2, 3, 4, 5};	// 原数组，0用作补位
+	int d[6] = {};					// 差分数组，和原数组等长
+	
+	// 计算差分数组
+	for(int i=1; i<=5; i++){
+		d[i] = a[i] - a[i - 1];
+	}
+	
+	// 输出
+	for(int i=1; i<=5; i++){
+		cout << d[i] << " ";
+	}
+	
+	return 0;
+}
+```
+对给定区间 [x, y]，进行操作
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[6] = {0, 1, 2, 3, 4, 5}, d[7] = {}, s[6] = {}; // 差分数组多一个元素防止数组越界
+	
+	// 计算差分数组
+	for(int i=1; i<=5; i++){
+		d[i] = a[i] - a[i - 1];
+	}
+	
+	int x, y;
+	cin >> x >> y; // 2 4
+	
+	// 对范围[x, y]进行+1操作
+	d[x] += 1;
+	d[y + 1] -= 1;
+	
+	// 对修改后的差分数组求前缀和得到原数组
+	for(int i=1; i<=5; i++){
+		s[i] = s[i - 1] + d[i];
+		cout << s[i] << " "; // 1 3 4 5 5
+	}
+	
+	return 0;
+}
+```
+**4. 二维 差分**
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int a[4][4] = {
+		0, 0, 0, 0,
+		0, 1, 2, 3,
+		0, 4, 5, 6,
+		0, 7, 8, 9
+	}, d[4][4] = {};
+	
+	// 计算差分数组
+	for(int i=1; i<=3; i++){
+		for(int j=1; j<=3; j++){
+			d[i][j] = a[i][j] - a[i - 1][j] - a[i][j - 1] + a[i - 1][j - 1];
+		}
+	}
+	
+	// 输出
+	for(int i=1; i<=3; i++){
+		for(int j=1; j<=3; j++){
+			cout << d[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
+	return 0;
+}
+```
+对给定区域 [(x1, y1), (x2, y2)]，进行操作
+```c++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	
+	return 0;
+}
+```
+
+# 018 二分
+ [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
 
 
 
