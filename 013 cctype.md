@@ -1,5 +1,5 @@
 # 013 cctype
- [[返回目录]](https://github.com/SacredDreams/C-Notes/blob/main/README.md#目录)  
+ [[返回目录]](./README.md)  
 
 **1. 判断**
  - `islower()`判断是否为小写字母
