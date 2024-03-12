@@ -1,5 +1,5 @@
 # 目录
-  - [001 输入输出与基本数学计算](./001-输入输出与基本数学计算.md)
+  - [001 输入输出与基本数学计算](./001%20输入输出与基本数学计算.md)
   - [002 数据类型](https://github.com/SacredDreams/C-Notes/blob/main/README.md#002-数据类型)
   - [003 条件判断](https://github.com/SacredDreams/C-Notes/blob/main/README.md#003-条件判断)
   - [004 循环](https://github.com/SacredDreams/C-Notes/blob/main/README.md#004-循环)
